@@ -35,12 +35,12 @@ function ElevationScroll(props) {
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
-    marginBottom: '3em',
+    marginBottom: 0,
     [theme.breakpoints.down('md')]: {
-      marginBottom: '2em',
+      marginBottom: '.75em',
     },
     [theme.breakpoints.down('xs')]: {
-      marginBottom: '1.25em',
+      marginBottom: '.5em',
     },
   },
   logo: {
@@ -156,8 +156,8 @@ export default function Header(props) {
       mouseOver: (event) => handleClick(event),
     },
 
-    { name: 'About Me', link: '/about', activeIndex: 2 },
-    { name: 'Contact Me', link: '/contact', activeIndex: 3 },
+    { name: 'About', link: '/about', activeIndex: 2 },
+    { name: 'Contact', link: '/contact', activeIndex: 3 },
     { name: 'Thanks To', link: '/thanksTo', activeIndex: 4 },
     { name: 'Help Me', link: '/helpMe', activeIndex: 5 },
   ])
