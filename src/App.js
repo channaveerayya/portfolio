@@ -5,6 +5,7 @@ import theme from './Theme'
 import Header from './layout/Header'
 import Footer from './layout/Footer'
 import ErrorPage from './components/404'
+import HomePage from './pages/HomePage'
 function App() {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [value, setValue] = useState(0)
@@ -19,7 +20,17 @@ function App() {
           setSelectedIndex={setSelectedIndex}
         />
         <Switch>
-          <Route exact path='/' render={(props) => <h2>root</h2>} />
+          <Route
+            exact
+            path='/'
+            render={(props) => (
+              <HomePage
+                {...props}
+                setValue={setValue}
+                setSelectedIndex={setSelectedIndex}
+              />
+            )}
+          />
           <Route component={ErrorPage} />
         </Switch>
         <Footer setValue={setValue} setSelectedIndex={setSelectedIndex} />

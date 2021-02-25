@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     zIndex: 1302,
     position: 'absolute',
-    bottom: 0,
   },
   mainContainer: {
     position: 'absolute',
