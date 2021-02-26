@@ -26,13 +26,13 @@ const useStyles = makeStyles((theme) => ({
   },
   logoContainer: {
     marginLeft: '1em',
-    height: '18vh',
+    height: '15em',
     padding: 0,
     verticalAlign: 'bottom',
     '&:hover': {
       backgroundColor: 'transparent',
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%',
       marginLeft: 0,
     },
@@ -48,7 +48,7 @@ export default function Footer(props) {
 
   return (
     <footer className={classes.footer}>
-      <Hidden smDown>
+      <Hidden mdDown>
         <Grid container justify='center' className={classes.mainContainer}>
           <Grid item className={classes.gridItem}>
             <Grid container direction='column' spacing={2}>

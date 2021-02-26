@@ -1,12 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import { makeStyles, useTheme } from '@material-ui/styles'
-import { Grid, useMediaQuery, Typography, Button } from '@material-ui/core'
+import {
+  Card,
+  CardContent,
+  Grid,
+  useMediaQuery,
+  Typography,
+  Button,
+} from '@material-ui/core'
+import { bufferToBase64Img } from '../utils/Helpers'
 import { getApi } from '../services'
 import Hero from '../components/Hero'
+import ButtonArrow from '../components/ButtonArrow'
 import Loading from '../components/Loading/index'
 import bg1 from '../assets/bg-1.svg'
 import { Link } from 'react-router-dom'
 import WhatIDo from '../components/WhatIDo'
+import bg2 from '../animations/bg2.json'
+import Lottie from 'react-lottie'
+import nextjs from '../assets/nextjs.svg'
+import mongodb from '../assets/mongodb.svg'
+import react from '../assets/react.svg'
+import nodejs from '../assets/nodejs.svg'
 const useStyles = makeStyles((theme) => ({
   animation: {
     maxWidth: '58em',
@@ -78,7 +93,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   serviceContainer: {
-    marginTop: '12em',
     [theme.breakpoints.down('sm')]: {
       padding: 25,
     },
@@ -89,16 +103,79 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundAttachment: 'fixed',
     backgroundRepeat: 'no-repeat',
-
+    padding: '2em',
     width: '100%',
     [theme.breakpoints.down('md')]: {
-      // backgroundAttachment: 'inherit',
+      padding: '0',
+    },
+  },
+  revolutionCard: {
+    position: 'absolute',
+    boxShadow: theme.shadows[10],
+    zIndex: 1,
+    borderRadius: 15,
+    margin: '5em',
+    padding: '5em',
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: '8em',
+      paddingBottom: '8em',
+      paddingLeft: 0,
+      paddingRight: 0,
+      borderRadius: 0,
+      width: '100%',
+      margin: '0',
+    },
+  },
+  techStackImg: {
+    width: '15em',
+    height: '15em',
+    padding: '2em',
+    margin: '1em',
+    '&:hover': {
+      backgroundColor: '#fff',
+      boxShadow: '0 10px 20px rgb(0 0 0 / 20%)',
+      transform: 'translateY(-3px)',
+    },
+    [theme.breakpoints.down('md')]: {
+      width: '10em',
+      height: '10em',
+      padding: '1em',
+      margin: '.5em',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '15em',
+      height: '15em',
+      padding: '1em',
+      margin: '.5em',
+    },
+  },
+  proImg: {
+    width: '25em',
+    height: '25em',
+    margin: '1em',
+    '&:hover': {
+      backgroundColor: '#fff',
+      boxShadow: '0 10px 20px rgb(0 0 0 / 20%)',
+      transform: 'translateY(-3px)',
+    },
+    [theme.breakpoints.down('md')]: {
+      width: '20em',
+      height: '20em',
+      padding: '1em',
+      margin: '.5em',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '25em',
+      height: '25em',
+      padding: '1em',
+      margin: '0em',
     },
   },
 }))
 
 export default function HomePage(props) {
   const [data, setHomePage] = useState(null)
+  const [projects, setProjects] = useState([])
   const classes = useStyles()
   const theme = useTheme()
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'))
@@ -106,8 +183,23 @@ export default function HomePage(props) {
   useEffect(() => {
     getApi('home').then((res) => {
       setHomePage(res)
+      setProjects(
+        res.homePage.projects.map((pro) => ({
+          ...pro,
+          ProImage: bufferToBase64Img(pro.ProImage.data),
+        }))
+      )
     })
-  }, [data])
+  }, [0])
+
+  const bg2Animation = {
+    loop: true,
+    autoplay: true,
+    animationData: bg2,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  }
   return data ? (
     <Grid container direction='column' className={classes.mainContainer}>
       <Grid item>
@@ -124,6 +216,157 @@ export default function HomePage(props) {
       </Grid>
       <Grid item className={classes.background} container direction='column'>
         <WhatIDo classes={classes} matchesSM={matchesSM} />
+      </Grid>
+      <Grid item>
+        {/*-----The Revolution Block-----*/}
+        <Grid
+          container
+          style={{ height: '60em' }}
+          alignItems='center'
+          justify='center'
+        >
+          <Card className={classes.revolutionCard}>
+            <CardContent>
+              <Grid
+                container
+                direction='column'
+                style={{ textAlign: 'center' }}
+              >
+                <Grid item>
+                  <Typography variant='h3' gutterBottom>
+                    About Me
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography variant='subtitle1'>
+                    {data.homePage.aboutMe}
+                  </Typography>
+                  <Button
+                    component={Link}
+                    to='/portfolio'
+                    className={classes.learnButtonHero}
+                    variant='outlined'
+                    onClick={() => props.setValue(2)}
+                  >
+                    <span style={{ marginRight: 10 }}>Learn More</span>
+                    <ButtonArrow
+                      width={15}
+                      height={15}
+                      fill={theme.palette.common.blue}
+                    />
+                  </Button>
+                </Grid>
+              </Grid>
+            </CardContent>
+          </Card>
+          <Lottie options={bg2Animation} height={'100%'} width={'100%'} />
+        </Grid>
+      </Grid>
+      <Grid item>
+        <Grid
+          container
+          alignItems='center'
+          justify='center'
+          direction='column'
+          style={{
+            backgroundColor: theme.palette.common.winterOasis,
+            padding: matchesSM ? 0 : '5em',
+            paddingTop: '5em',
+            // margin: '1em 0',
+          }}
+        >
+          <Grid item>
+            <Typography variant='h3'>Tech stacks </Typography>
+          </Grid>
+          <Grid item>
+            <Grid
+              container
+              alignItems='center'
+              justify='center'
+              direction='row'
+            >
+              <Grid item>
+                <img
+                  className={classes.techStackImg}
+                  src={react}
+                  alt='swiss army knife'
+                />
+              </Grid>
+              <Grid item>
+                <img
+                  className={classes.techStackImg}
+                  src={nextjs}
+                  alt='swiss army knife'
+                />
+              </Grid>
+              <Grid item>
+                <img
+                  className={classes.techStackImg}
+                  src={mongodb}
+                  alt='swiss army knife'
+                />
+              </Grid>
+
+              <Grid item>
+                <img
+                  className={classes.techStackImg}
+                  src={nodejs}
+                  alt='swiss army knife'
+                />
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item>
+        <Grid
+          container
+          alignItems='center'
+          justify='center'
+          direction='column'
+          className={classes.background}
+          style={{
+            // backgroundColor: theme.palette.common.winterOasis,
+            padding: matchesSM ? 0 : '5em',
+            paddingTop: '5em',
+          }}
+        >
+          <Grid item>
+            <Typography variant='h3'>Projects </Typography>
+          </Grid>
+          <Grid item>
+            <Grid
+              container
+              alignItems='center'
+              justify='center'
+              direction='row'
+            >
+              {projects.map((pro, i) => (
+                <Grid
+                  item
+                  container
+                  direction='column'
+                  alignItems='center'
+                  md
+                  key={i}
+                >
+                  <Grid item>
+                    <img
+                      className={classes.proImg}
+                      src={pro.ProImage}
+                      alt='swiss army knife'
+                    />
+                  </Grid>
+                  <Grid item>
+                    <Typography align='center' variant='h4' gutterBottom>
+                      {pro.ProTitle}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
   ) : (
