@@ -6,6 +6,7 @@ import Header from './layout/Header'
 import Footer from './layout/Footer'
 import ErrorPage from './components/404'
 import HomePage from './pages/HomePage'
+import PortfolioPage from './pages/PortfolioPage'
 function App() {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [value, setValue] = useState(0)
@@ -25,6 +26,17 @@ function App() {
             path='/'
             render={(props) => (
               <HomePage
+                {...props}
+                setValue={setValue}
+                setSelectedIndex={setSelectedIndex}
+              />
+            )}
+          />
+          <Route
+            exact
+            path='/portfolio'
+            render={(props) => (
+              <PortfolioPage
                 {...props}
                 setValue={setValue}
                 setSelectedIndex={setSelectedIndex}

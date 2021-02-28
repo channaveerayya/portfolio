@@ -17,6 +17,7 @@ import bg1 from '../assets/bg-1.svg'
 import { Link } from 'react-router-dom'
 import WhatIDo from '../components/WhatIDo'
 import bg2 from '../animations/bg2.json'
+import contactBG from '../animations/contactUs.json'
 import Lottie from 'react-lottie'
 import nextjs from '../assets/nextjs.svg'
 import mongodb from '../assets/mongodb.svg'
@@ -171,6 +172,21 @@ const useStyles = makeStyles((theme) => ({
       margin: '0em',
     },
   },
+  infoBackground: {
+    margin: '1em',
+    position: 'absolute',
+    zIndex: 10,
+  },
+  contactAnimation: {
+    width: '100%',
+    // minWidth: '40em',
+    height: '60em',
+    [theme.breakpoints.down('xs')]: {
+      maxWidth: '20em',
+      minWidth: '25em',
+      height: '20em',
+    },
+  },
 }))
 
 export default function HomePage(props) {
@@ -190,12 +206,20 @@ export default function HomePage(props) {
         }))
       )
     })
-  }, [0])
+  }, [])
 
   const bg2Animation = {
     loop: true,
     autoplay: true,
     animationData: bg2,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  }
+  const contactAnimation = {
+    loop: true,
+    autoplay: true,
+    animationData: contactBG,
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice',
     },
@@ -218,7 +242,6 @@ export default function HomePage(props) {
         <WhatIDo classes={classes} matchesSM={matchesSM} />
       </Grid>
       <Grid item>
-        {/*-----The Revolution Block-----*/}
         <Grid
           container
           style={{ height: '60em' }}
@@ -365,6 +388,54 @@ export default function HomePage(props) {
                 </Grid>
               ))}
             </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item>
+        <Grid container alignItems='center' direction='row'>
+          <Grid
+            item
+            sm
+            className={classes.infoBackground}
+            style={{
+              marginRight: matchesXS ? 0 : matchesSM ? '2em' : '5em',
+              textAlign: matchesXS ? 'center' : 'left',
+            }}
+          >
+            <Grid container direction='column'>
+              <Typography variant='h2'>Contact Us</Typography>
+              <Typography variant='subtitle2' color='secondary'>
+                Say hello!{' '}
+                <span role='img' aria-label='waving hand'>
+                  👋🏻
+                </span>
+              </Typography>
+              <Grid item>
+                <Button
+                  component={Link}
+                  to='/contact'
+                  variant='outlined'
+                  className={classes.learnButton}
+                  onClick={() => props.setValue(4)}
+                >
+                  <span style={{ marginRight: 10 }}>Let's get personal.</span>
+                  <ButtonArrow
+                    width={10}
+                    height={10}
+                    fill={theme.palette.common.blue}
+                  />
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid
+            item
+            className={classes.contactAnimation}
+            style={{
+              textAlign: matchesXS ? 'center' : 'left',
+            }}
+          >
+            <Lottie options={contactAnimation} height='100%' width='100%' />
           </Grid>
         </Grid>
       </Grid>

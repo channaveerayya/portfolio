@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, useMediaQuery, Typography, Button } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 import WebDeveloper from '../assets/WebDeveloper.svg'
 import mobileApp from '../assets/mobileapp.svg'
 import Designer from '../assets/Designer.svg'
