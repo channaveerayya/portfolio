@@ -239,7 +239,11 @@ export default function HomePage(props) {
         />
       </Grid>
       <Grid item className={classes.background} container direction='column'>
-        <WhatIDo classes={classes} matchesSM={matchesSM} />
+        <WhatIDo
+          classes={classes}
+          matchesSM={matchesSM}
+          data={data.homePage.whatICanDo}
+        />
       </Grid>
       <Grid item>
         <Grid

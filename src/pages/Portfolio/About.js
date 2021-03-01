@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Grid, useMediaQuery } from '@material-ui/core'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-import AboutMe from '../components/portfolio/AboutMe'
-import HobAndLang from '../components/portfolio/HobAndLang'
-import MyServices from '../components/portfolio/MyServices'
-import { getApi } from '../services'
-import { bufferToBase64Img } from '../utils/Helpers'
-import Loading from '../components/Loading/index'
+import AboutMe from '../../components/portfolio/AboutMe'
+import HobAndLang from '../../components/portfolio/HobAndLang'
+import MyServices from '../../components/portfolio/MyServices'
+import { getApi } from '../../services'
+import { bufferToBase64Img } from '../../utils/Helpers'
+import Loading from '../../components/Loading/index'
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {

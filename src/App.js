@@ -6,7 +6,8 @@ import Header from './layout/Header'
 import Footer from './layout/Footer'
 import ErrorPage from './components/404'
 import HomePage from './pages/HomePage'
-import PortfolioPage from './pages/PortfolioPage'
+import AboutPage from './pages/Portfolio/About'
+import ResumePage from './pages/Portfolio/Resume'
 function App() {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [value, setValue] = useState(0)
@@ -36,7 +37,18 @@ function App() {
             exact
             path='/portfolio'
             render={(props) => (
-              <PortfolioPage
+              <AboutPage
+                {...props}
+                setValue={setValue}
+                setSelectedIndex={setSelectedIndex}
+              />
+            )}
+          />
+          <Route
+            exact
+            path='/resume'
+            render={(props) => (
+              <ResumePage
                 {...props}
                 setValue={setValue}
                 setSelectedIndex={setSelectedIndex}

@@ -65,9 +65,19 @@ const useStyles = makeStyles((theme) => ({
   button: {
     ...theme.typography.estimate,
     borderRadius: '50px',
-    marginLeft: '50px',
+    marginLeft: '10px',
     marginRight: '25px',
     height: '45px',
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.light,
+    },
+  },
+  Resumebtn: {
+    ...theme.typography.learnButton,
+    borderRadius: '50px',
+    height: '45px',
+    color: theme.palette.common.crystal,
+    // borderColor: theme.palette.common.crystal,
     '&:hover': {
       backgroundColor: theme.palette.secondary.light,
     },
@@ -181,6 +191,7 @@ export default function Header(props) {
   }
 
   const handleMenuItemClick = (e, i) => {
+    console.log(i)
     setAnchorEl(null)
     setOpenMenu(false)
     props.setSelectedIndex(i)
@@ -206,7 +217,7 @@ export default function Header(props) {
           }
           break
         case '/forDev':
-          props.setValue(5)
+          props.setValue(6)
           break
         default:
           break
@@ -235,6 +246,14 @@ export default function Header(props) {
           />
         ))}
       </Tabs>
+      <Button
+        variant='outlined'
+        color='secondary'
+        className={classes.Resumebtn}
+        onClick={() => console.log('resume download')}
+      >
+        Download Resume
+      </Button>
       <Button
         component={Link}
         to='/forDev'
@@ -268,6 +287,12 @@ export default function Header(props) {
               handleMenuItemClick(event, i)
               props.setValue(1)
               handleClose()
+            }}
+            style={{
+              backgroundColor:
+                i === props.selectedIndex && props.value === 1
+                  ? '#2a9d8f'
+                  : 'inherit',
             }}
             selected={i === props.selectedIndex && props.value === 1}
           >
@@ -316,16 +341,33 @@ export default function Header(props) {
             }}
             divider
             button
+            classes={{
+              // root: classes.drawerItemEstimate,
+              selected: classes.drawerItemSelected,
+            }}
+          >
+            <ListItemText className={classes.drawerItem} disableTypography>
+              Download Resume
+            </ListItemText>
+          </ListItem>
+
+          <ListItem
+            onClick={() => {
+              setOpenDrawer(false)
+              props.setValue(6)
+            }}
+            divider
+            button
             component={Link}
             classes={{
               root: classes.drawerItemEstimate,
               selected: classes.drawerItemSelected,
             }}
             to='/forDev'
-            selected={props.value === 5}
+            selected={props.value === 6}
           >
             <ListItemText className={classes.drawerItem} disableTypography>
-              Developers
+              For Developers
             </ListItemText>
           </ListItem>
         </List>
