@@ -8,6 +8,11 @@ function WhatIDo({ data, matchesSM, classes }) {
     data && (
       <>
         <Grid item>
+          <Typography variant='h3' align='center'>
+            What I DO
+          </Typography>
+        </Grid>
+        <Grid item>
           <Grid
             container
             direction='row'

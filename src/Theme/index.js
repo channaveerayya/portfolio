@@ -71,9 +71,9 @@ export default createMuiTheme({
       color: warpiendGrey,
     },
     subtitle2: {
-      color: 'white',
+      color: winterOasis,
       fontWeight: 300,
-      fontSize: '1.25rem',
+      fontSize: '1rem',
     },
     body1: {
       fontSize: '1.25rem',
