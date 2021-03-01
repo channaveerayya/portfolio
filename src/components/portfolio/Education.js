@@ -1,6 +1,5 @@
 import React from 'react'
 import Lottie from 'react-lottie'
-import moment from 'moment'
 import { Grid, Typography } from '@material-ui/core'
 import collegeData from '../../animations/college.json'
 import diplomaData from '../../animations/diploma.json'
@@ -32,7 +31,6 @@ function Education({ education, classes, matchesSM, theme }) {
       preserveAspectRatio: 'xMidYMid slice',
     },
   }
-  console.log(education)
   return (
     education && (
       <>
@@ -208,17 +206,6 @@ function Education({ education, classes, matchesSM, theme }) {
       </>
     )
   )
-}
-
-function getEducation(education) {
-  return education.map((edu) => {
-    return {
-      ...edu,
-      year: `${moment(edu.from).format('YYYY')} - ${moment(edu.to).format(
-        'YYYY'
-      )}`,
-    }
-  })
 }
 
 export default Education
