@@ -77,7 +77,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '50px',
     height: '45px',
     color: theme.palette.common.crystal,
-    // borderColor: theme.palette.common.crystal,
     '&:hover': {
       backgroundColor: theme.palette.secondary.light,
     },
@@ -191,7 +190,6 @@ export default function Header(props) {
   }
 
   const handleMenuItemClick = (e, i) => {
-    console.log(i)
     setAnchorEl(null)
     setOpenMenu(false)
     props.setSelectedIndex(i)
