@@ -82,7 +82,14 @@ function Education({ education, classes, matchesSM, theme }) {
                 {education[0].description}
               </Typography>
             </Grid>
-            <Grid item>
+            <Grid
+              item
+              style={{
+                maxWidth: '28em',
+                minWidth: '25em',
+                height: '20em',
+              }}
+            >
               <Lottie
                 className={classes.icon}
                 options={animationBE}
@@ -137,7 +144,15 @@ function Education({ education, classes, matchesSM, theme }) {
                 {education[1].description}
               </Typography>
             </Grid>
-            <Grid item style={{ marginRight: matchesSM ? 0 : '5em' }}>
+            <Grid
+              item
+              style={{
+                maxWidth: '28em',
+                minWidth: '25em',
+                height: '20em',
+                marginRight: matchesSM ? 0 : '5em',
+              }}
+            >
               <Lottie
                 className={classes.icon}
                 options={animationDip}
@@ -193,12 +208,16 @@ function Education({ education, classes, matchesSM, theme }) {
                 {education[2].description}
               </Typography>
             </Grid>
-            <Grid item>
+            <Grid
+              item
+              style={{ maxWidth: '28em', minWidth: '25em', height: '20em' }}
+            >
               <Lottie
                 className={classes.icon}
                 options={animationSchool}
                 height={'100%'}
                 width={'100%'}
+                // style={{ maxWidth: '58em', minWidth: '31em', height: '41em' }}
               />
             </Grid>
           </Grid>
