@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function ErrorPage() {
+function ErrorPage({ setValue }) {
   const classes = useStyles()
   const defaultOptions = {
     loop: true,
@@ -27,7 +27,13 @@ function ErrorPage() {
   }
 
   return (
-    <Grid container component={Link} to='/' className={classes.animation}>
+    <Grid
+      container
+      component={Link}
+      to='/'
+      className={classes.animation}
+      onClick={() => setValue(0)}
+    >
       <Lottie options={defaultOptions} height={'100%'} width={'100%'} />
     </Grid>
   )

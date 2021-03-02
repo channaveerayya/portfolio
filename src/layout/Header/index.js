@@ -17,6 +17,8 @@ import {
   Tabs,
 } from '@material-ui/core'
 import { makeStyles, useTheme } from '@material-ui/styles'
+import { getApi } from '../../services'
+import { bufferToBase64PDF } from '../../utils/Helpers'
 import Lottie from 'react-lottie'
 import burgerMenuData from '../../animations/BurgerMenu/menu.json'
 
@@ -131,6 +133,7 @@ export default function Header(props) {
   const matches = useMediaQuery(theme.breakpoints.down('sm'))
 
   const [openDrawer, setOpenDrawer] = useState(false)
+  const [resume, setResume] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null)
   const [openMenu, setOpenMenu] = useState(false)
   const [menuOptions] = useState([
@@ -168,7 +171,6 @@ export default function Header(props) {
     { name: 'About', link: '/about', activeIndex: 2 },
     { name: 'Contact', link: '/contact', activeIndex: 3 },
     { name: 'Thanks To', link: '/thanksTo', activeIndex: 4 },
-    { name: 'Help Me', link: '/helpMe', activeIndex: 5 },
   ])
 
   const defaultOptions = {
@@ -199,6 +201,12 @@ export default function Header(props) {
     setAnchorEl(null)
     setOpenMenu(false)
   }
+
+  useEffect(() => {
+    getApi('portfolio/resumeFile').then((res) => {
+      setResume(bufferToBase64PDF(res.resume.data))
+    })
+  }, [])
 
   useEffect(() => {
     ;[...menuOptions, ...routes].forEach((route) => {
@@ -248,10 +256,23 @@ export default function Header(props) {
         variant='outlined'
         color='secondary'
         className={classes.Resumebtn}
-        onClick={() => console.log('resume download')}
+        onClick={() =>
+          window.open('https://fathomless-woodland-28290.herokuapp.com/')
+        }
       >
-        Download Resume
+        Theme 2
       </Button>
+      {resume && (
+        <Button
+          variant='outlined'
+          color='secondary'
+          className={classes.Resumebtn}
+          download='Channaveerayya-CV.pdf'
+          href={resume}
+        >
+          Download Resume
+        </Button>
+      )}
       <Button
         component={Link}
         to='/forDev'
@@ -333,10 +354,6 @@ export default function Header(props) {
             </ListItem>
           ))}
           <ListItem
-            onClick={() => {
-              setOpenDrawer(false)
-              props.setValue(5)
-            }}
             divider
             button
             classes={{
@@ -345,10 +362,38 @@ export default function Header(props) {
             }}
           >
             <ListItemText className={classes.drawerItem} disableTypography>
-              Download Resume
+              <a
+                target='_blank'
+                href='https://fathomless-woodland-28290.herokuapp.com/'
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
+                {' '}
+                Theme 2
+              </a>
             </ListItemText>
           </ListItem>
 
+          {resume && (
+            <ListItem
+              divider
+              button
+              classes={{
+                // root: classes.drawerItemEstimate,
+                selected: classes.drawerItemSelected,
+              }}
+            >
+              <ListItemText className={classes.drawerItem} disableTypography>
+                <a
+                  download='Channaveerayya-CV.pdf'
+                  href={resume}
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
+                  {' '}
+                  Download Resume
+                </a>
+              </ListItemText>
+            </ListItem>
+          )}
           <ListItem
             onClick={() => {
               setOpenDrawer(false)

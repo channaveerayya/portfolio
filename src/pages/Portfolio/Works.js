@@ -10,11 +10,13 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '2em',
     [theme.breakpoints.down('md')]: {
       marginTop: '3em',
-      padding: 0,
+      padding: 'unset',
+      paddingTop: '1em',
     },
     [theme.breakpoints.down('xs')]: {
       marginTop: '2em',
-      padding: 0,
+      padding: 'unset',
+      paddingTop: '1em',
     },
   },
   rowContainer: {
@@ -46,7 +48,13 @@ function Works() {
     })
   }, [])
   return data ? (
-    <Grid container md direction='column' className={classes.mainContainer}>
+    <Grid
+      item
+      container
+      md
+      direction='column'
+      className={classes.mainContainer}
+    >
       <Grid item>
         <Typography align='center' variant='h1' gutterBottom>
           Projects
