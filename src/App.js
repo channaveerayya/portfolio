@@ -8,6 +8,7 @@ import ErrorPage from './components/404'
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/Portfolio/About'
 import ResumePage from './pages/Portfolio/Resume'
+import Works from './pages/Portfolio/Works'
 function App() {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [value, setValue] = useState(0)
@@ -49,6 +50,17 @@ function App() {
             path='/resume'
             render={(props) => (
               <ResumePage
+                {...props}
+                setValue={setValue}
+                setSelectedIndex={setSelectedIndex}
+              />
+            )}
+          />
+          <Route
+            exact
+            path='/works'
+            render={(props) => (
+              <Works
                 {...props}
                 setValue={setValue}
                 setSelectedIndex={setSelectedIndex}
