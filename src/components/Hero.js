@@ -71,7 +71,7 @@ function Hero({
           <Grid item>
             <Button
               component={Link}
-              to='/forDev'
+              to='/forDev/My favorites'
               className={classes.estimateButton}
               variant='contained'
             >

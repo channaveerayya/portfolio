@@ -222,8 +222,8 @@ export default function Header(props) {
             }
           }
           break
-        case '/forDev':
-          props.setValue(6)
+        case window.location.pathname.includes('/forDev'):
+          props.setValue(1)
           break
         default:
           break
@@ -275,7 +275,7 @@ export default function Header(props) {
       )}
       <Button
         component={Link}
-        to='/forDev'
+        to='/forDev/My favorites'
         variant='contained'
         color='secondary'
         className={classes.button}
@@ -406,7 +406,7 @@ export default function Header(props) {
               root: classes.drawerItemEstimate,
               selected: classes.drawerItemSelected,
             }}
-            to='/forDev'
+            to='/forDev/My favorites'
             selected={props.value === 6}
           >
             <ListItemText className={classes.drawerItem} disableTypography>

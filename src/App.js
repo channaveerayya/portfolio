@@ -6,6 +6,7 @@ import Header from './layout/Header'
 import Footer from './layout/Footer'
 import ErrorPage from './components/404'
 import HomePage from './pages/HomePage'
+import ForDevPage from './pages/ForDevPage'
 import AboutPage from './pages/Portfolio/About'
 import ResumePage from './pages/Portfolio/Resume'
 import Works from './pages/Portfolio/Works'
@@ -73,6 +74,17 @@ function App() {
             path='/skills'
             render={(props) => (
               <Skills
+                {...props}
+                setValue={setValue}
+                setSelectedIndex={setSelectedIndex}
+              />
+            )}
+          />
+          <Route
+            exact
+            path='/forDev/:id'
+            render={(props) => (
+              <ForDevPage
                 {...props}
                 setValue={setValue}
                 setSelectedIndex={setSelectedIndex}
