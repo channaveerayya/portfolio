@@ -168,9 +168,8 @@ export default function Header(props) {
       mouseOver: (event) => handleClick(event),
     },
 
-    { name: 'About', link: '/about', activeIndex: 2 },
-    { name: 'Contact', link: '/contact', activeIndex: 3 },
-    { name: 'Thanks To', link: '/thanksTo', activeIndex: 4 },
+    { name: 'Contact', link: '/contact', activeIndex: 2 },
+    { name: 'Thanks To', link: '/thanksTo', activeIndex: 3 },
   ])
 
   const defaultOptions = {
@@ -223,7 +222,7 @@ export default function Header(props) {
           }
           break
         case window.location.pathname.includes('/forDev'):
-          props.setValue(1)
+          props.setValue(0)
           break
         default:
           break
@@ -279,7 +278,7 @@ export default function Header(props) {
         variant='contained'
         color='secondary'
         className={classes.button}
-        onClick={() => props.setValue(5)}
+        onClick={() => props.setValue(0)}
       >
         For Developers
       </Button>
@@ -397,7 +396,7 @@ export default function Header(props) {
           <ListItem
             onClick={() => {
               setOpenDrawer(false)
-              props.setValue(6)
+              props.setValue(0)
             }}
             divider
             button

@@ -273,7 +273,7 @@ export default function HomePage(props) {
                     to='/portfolio'
                     className={classes.learnButtonHero}
                     variant='outlined'
-                    onClick={() => props.setValue(2)}
+                    onClick={() => props.setValue(1)}
                   >
                     <span style={{ marginRight: 10 }}>Learn More</span>
                     <ButtonArrow
@@ -420,7 +420,7 @@ export default function HomePage(props) {
                   to='/contact'
                   variant='outlined'
                   className={classes.learnButton}
-                  onClick={() => props.setValue(4)}
+                  onClick={() => props.setValue(2)}
                 >
                   <span style={{ marginRight: 10 }}>Let's get personal.</span>
                   <ButtonArrow

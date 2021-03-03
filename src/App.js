@@ -7,6 +7,7 @@ import Footer from './layout/Footer'
 import ErrorPage from './components/404'
 import HomePage from './pages/HomePage'
 import ForDevPage from './pages/ForDevPage'
+import Contact from './pages/Contact'
 import AboutPage from './pages/Portfolio/About'
 import ResumePage from './pages/Portfolio/Resume'
 import Works from './pages/Portfolio/Works'
@@ -14,7 +15,9 @@ import Skills from './pages/Portfolio/Skills'
 function App() {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [value, setValue] = useState(0)
-
+  React.useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [value])
   return (
     <MuiThemeProvider theme={theme}>
       <BrowserRouter>
@@ -85,6 +88,17 @@ function App() {
             path='/forDev/:id'
             render={(props) => (
               <ForDevPage
+                {...props}
+                setValue={setValue}
+                setSelectedIndex={setSelectedIndex}
+              />
+            )}
+          />
+          <Route
+            exact
+            path='/contact'
+            render={(props) => (
+              <Contact
                 {...props}
                 setValue={setValue}
                 setSelectedIndex={setSelectedIndex}

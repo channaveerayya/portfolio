@@ -84,7 +84,7 @@ function Hero({
               to='/portfolio'
               className={classes.learnButtonHero}
               variant='outlined'
-              onClick={() => setValue(2)}
+              onClick={() => setValue(0)}
             >
               <span style={{ marginRight: 10 }}>Portfolio</span>
               <ButtonArrow
